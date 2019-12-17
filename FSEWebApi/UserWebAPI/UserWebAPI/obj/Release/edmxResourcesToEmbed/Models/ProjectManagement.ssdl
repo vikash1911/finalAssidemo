@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ParentTask">
+    <Key>
+      <PropertyRef Name="ParentTaskId" />
+    </Key>
+    <Property Name="ParentTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentTaskName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProjectStartDate" Type="datetime" />
+    <Property Name="ProjectEndDate" Type="datetime" />
+    <Property Name="ProjectPriority" Type="int" />
+    <Property Name="ProjectStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TaskDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TaskPriority" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="TaskStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentTaskId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="TaskAssignedTo" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmpId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="TaskId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="ProjectManagerModelStoreContainer">
+    <EntitySet Name="ParentTask" EntityType="Self.ParentTask" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
